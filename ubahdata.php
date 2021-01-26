@@ -21,45 +21,51 @@ if (isset($_POST['Simpan'])){
 	$unit = $_POST['unit'];
 	$usaha = $_POST['usaha'];
 	$sumber_keuangan = $_POST['sumber_keuangan'];
-	$nama_file = $_FILES['gambar']['name'];
-    $source = $_FILES['gambar']['tmp_name']; 
-    $folder = './file/';
+	//$nama_file = $_FILES['gambar']['name'];
+    //$source = $_FILES['gambar']['tmp_name']; 
+    //$folder = './file/';
 
-    move_uploaded_file($source, $folder.$nama_file);
 
-    $result = mysqli_query($connect, "UPDATE ormas SET  nama='$nama', bidang_kegiatan='$bidang_kegiatan', ruang_lingkup='$ruang_lingkup', alamat='$alamat', tempat='$tempat', asas='asas', tujuan='$tujuan', pendiri='$pendiri', pembina='$pembina', penasihat='$penasihat', ketua='$ketua', sekretaris='$sekretaris', bendahara='$bendahara', masa_bhakti='$masa_bhakti', keputusan='$keputusan', unit='$unit', usaha='$usaha', sumber_keuangan='$sumber_keuangan' ");
+    $result = mysqli_query($connect, "UPDATE ormas SET  nama='$nama', bidang_kegiatan='$bidang_kegiatan', ruang_lingkup='$ruang_lingkup', alamat='$alamat', tempat='$tempat', asas='asas', tujuan='$tujuan', pendiri='$pendiri', pembina='$pembina', penasihat='$penasihat', ketua='$ketua', sekretaris='$sekretaris', bendahara='$bendahara', masa_bhakti='$masa_bhakti', keputusan='$keputusan', unit='$unit', usaha='$usaha', sumber_keuangan='$sumber_keuangan' WHERE id='$id'  ");
+
+    //$result = mysqli_query($connect, "UPDATE upload SET nama_file='$nama_file' WHERE id_file=$id_file ");
+    
     header("Location: index.php");
 }
 ?>
 
 <?php
 $id = $_GET['id'];
+//$id_file = $_GET['id_file'];
 
 $result = mysqli_query($connect, "SELECT * FROM ormas WHERE id = '$id' ");
 while ($data = mysqli_fetch_array($result
 )){
-	$id = $data['id'];
+	//$id = $data['id'];
 	$nama = $data['nama'];
-	$bidang_kegiatan = $data['bidang_kegiatan'];
-	$ruang_lingkup = $data['ruang_lingkup'];
-	$alamat = $data['alamat'];
-	$tempat = $data['tempat'];
-	$asas = $data['asas'];
-	$tujuan = $data['tujuan'];
-	$pendiri = $data['pendiri'];
-	$pembina = $data['pembina'];
-	$penasihat = $data['penasihat'];
-	$ketua = $data['ketua'];
-	$sekretaris = $data['sekretaris'];
-	$bendahara = $data['bendahara'];
-	$masa_bhakti = $data['masa_bhakti'];
-	$keputusan = $data['keputusan'];
-	$unit = $data['unit'];
-	$usaha = $data['usaha'];
-	$sumber_keuangan = $data['sumber_keuangan'];
-	$nama_file = $_FILES['gambar']['name'];
-    $source = $_FILES['gambar']['tmp_name']; 
-    $folder = './file/';
+	//$bidang_kegiatan = $data['bidang_kegiatan'];
+	//$ruang_lingkup = $data['ruang_lingkup'];
+	//$alamat = $data['alamat'];
+	//$tempat = $data['tempat'];
+	//$asas = $data['asas'];
+	//$tujuan = $data['tujuan'];
+	//$pendiri = $data['pendiri'];
+	//$pembina = $data['pembina'];
+	//$penasihat = $data['penasihat'];
+	//$ketua = $data['ketua'];
+	//$sekretaris = $data['sekretaris'];
+	//$bendahara = $data['bendahara'];
+	//$masa_bhakti = $data['masa_bhakti'];
+	//$keputusan = $data['keputusan'];
+	//$unit = $data['unit'];
+	//$usaha = $data['usaha'];
+	//$sumber_keuangan = $data['sumber_keuangan'];
+	//$nama_file = $_FILES['gambar']['name'];
+    //$source = $_FILES['gambar']['tmp_name']; 
+    //$folder = './file/';
+
+
+   // move_uploaded_file($source, $folder.$nama_file);
 
 }
 ?>
@@ -72,8 +78,8 @@ while ($data = mysqli_fetch_array($result
 	<form name="ubah" method="POST" action="ubahdata.php">
 	<table>
 		<?php
-		$result = mysqli_query($connect, "SELECT * FROM  ormas"); 
-foreach ($result as $data) { 
+		$result = mysqli_query($connect, "SELECT * FROM  ormas WHERE id=$id"); 
+	foreach ($result as $data) { 
 		?>
 <tr><td>Nama Organisasi</td> 
 		<td>:</td>
@@ -109,7 +115,7 @@ foreach ($result as $data) {
 	</tr>
 	<tr><td>Nama Pembina </td>
 		<td>:</td>
-		<td><input type="text" name=pembina"></td> 
+		<td><input type="text" name="pembina"></td> 
 	</tr>
 	<tr><td>Nama Penasehat </td> 
 		<td>:</td>
@@ -154,7 +160,8 @@ foreach ($result as $data) {
         <td>:</td>
         <td><input type="file" name="gambar"></td>
         </tr>
-<tr><td><input type="button" name="Ubah" value="Simpan" onclick=''></td></tr>
+	<tr><td><input type="submit" name="Simpan" value="Simpan"></td>
+	</tr>
 <?php
 }
 ?>

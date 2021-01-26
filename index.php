@@ -17,9 +17,19 @@ $result = mysqli_query($connect, "SELECT * FROM ormas ORDER BY id ASC");
 	<tr><input type="button" name="tambah" value="Tambah Data" onclick='top.location="tambahdata.php"'></tr>
 
 <?php
+if(isset($_POST['Cari'])){
+    $query = $_POST['Cari'];
+    if($query != ''){
+    	$result = mysqli_query($connect, "SELECT * FROM ormas WHERE nama LIKE '%".$Cari."%' OR ketua LIKE '%".$Cari."%' " );
+    }else{
+    	$result = mysqli_query($connect, "SELECT * FROM ormas");
+    		
+    	}
+    }
+    	if(mysqli_num_rows($result)){
 
-$result = mysqli_query($connect, "SELECT * FROM  ormas"); 
-foreach ($result as $data) {
+		$result = mysqli_query($connect, "SELECT * FROM  ormas"); 
+		foreach ($result as $data) {
 	# code...
 	?>
 	<tr><td>INI LOGO</td></tr>
@@ -27,61 +37,66 @@ foreach ($result as $data) {
 		<td>: <?php echo $data['nama']?> </td></td>
 	</tr>
 	<tr><td>Bidang Kegiatan </td>
-		 <td>:</td>
+		 <td>: <?php echo $data['bidang_kegiatan']?></td>
 	</tr>
 	<tr><td>Ruang Lingkup  </td>
 		<td>: <?php echo $data['ruang_lingkup']?></td>	
 	</tr>
 	<tr><td>Alamat Kantor/Sekretariat </td>
-		<td>:</td>
+		<td>:<?php echo $data['alamat']?></td>
 	</tr>
 	<tr><td>Tempat dan Waktu Pendirian </td>
-		<td>:</td>	 
+		<td>: <?php echo $data['tempat']?></td>	 
 	</tr>
 	<tr><td>Asas Ciri Organisasi </td> 
-		<td>:</td>
+		<td>: <?php echo $data['asas']?></td>
 	</tr>
 	<tr><td>Tujuan Organisasi </td>
-		<td>:</td> 
+		<td>:<?php echo $data['tujuan']?></td> 
 	</tr>
 	<tr><td>Nama Pendiri </td> 
-		<td>:</td>
+		<td>:<?php echo $data['pendiri']?></td>
 	</tr>
 	<tr><td>Nama Pembina </td>
-		<td>:</td> 
+		<td>:<?php echo $data['pembina']?></td> 
 	</tr>
 	<tr><td>Nama Penasehat </td> 
-		<td>:</td>
+		<td>:<?php echo $data['penasihat']?></td>
 	</tr>
 	<tr>
 		<td>Ketua</td>
-		<td>:</td>	 
+		<td>:<?php echo $data['ketua']?></td>	 
 	</tr>
 	<tr><td>Sekretaris</td>
-		<td>:</td>
+		<td>:<?php echo $data['sekretaris']?></td>
 	</tr>
 	<tr><td>Bendahara </td>
-		<td>:</td>
+		<td>: <?php echo $data['bendahara']?></td>
 	</tr>
 	<tr><td>Masa Bhakti Kepengurusan </td>
-		<td>:</td>	 
+		<td>: <?php echo $data['masa_bhakti']?></td>	 
 	</tr>
 	<tr><td>Keputusan Tertinggi Orgnaisai </td>
-		<td>:</td> 
+		<td>:<?php echo $data['keputusan']?></td> 
 	</tr>
 	<tr><td>Unit/Satuan/Sayap Otonom Organisasi </td> 
-		<td>:</td>
+		<td>: <?php echo $data['unit']?></td>
 	</tr>
 	<tr><td>Usaha Organisasi </td>
-		<td>:</td>
+		<td>: <?php echo $data['usaha']?></td>
 	</tr>
 	<tr><td>Nama Sumber Keuangan </td> 
-		<td>:</td>
+		<td>: <?php echo $data['sumber_keuangan']?></td>
 	</tr>
-	<tr><td>
-	<input type="button" name="ubah" value="Ubah Data" onClick='top.location="ubahdata.php"'>
-	<input type="button" name="tambah" value="Hapus Data" onClick='top.location="hapusdata.php'></td></tr>
-		<?php
+	<tr>
+		<td>
+			<a href="ubahdata.php?id=<?php echo $data['id']; ?> "> <button> Ubah Data</button></a>
+			<a href="hapusdata.php?id=<?php echo $data['id']; ?> "> <button> Hapus Data</button></a>
+		</td>
+	</tr>
+	<?php
+}else{
+    echo '<tr><td colspan="5">Data Tidak Ditemukan</td></tr>';}
 }
 ?>
 </table>

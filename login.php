@@ -4,7 +4,7 @@
 </head>
 <body>
 	<h2>Silahkan Log in!</h2>
-	<form action="login.php" method="post">		
+	<form action="veriflogin.php" method="post">		
 		<table>
 			<tr>
 				<td>Username</td>
@@ -15,8 +15,7 @@
 				<td><input type="password" name="password"></td>
 			</tr>
 			<tr>
-				<td></td>
-				<td><input type="button" name="login" value="Login"></td>
+				<td><button type="submit" name="login"> Login </button></td>
 			</tr>
 		</table>
 	</form>

@@ -40,7 +40,7 @@
 	</tr>
 	<tr><td>Nama Pembina </td>
 		<td>:</td>
-		<td><input type="text" name=pembina"></td> 
+		<td><input type="text" name="pembina"></td> 
 	</tr>
 	<tr><td>Nama Penasehat </td> 
 		<td>:</td>
@@ -61,7 +61,7 @@
 	</tr>
 	<tr><td>Masa Bhakti Kepengurusan </td>
 		<td>:</td>
-		<td><input type="text" name="masa_bbhakti"></td>	 
+		<td><input type="text" name="masa_bhakti"></td>	 
 	</tr>
 	<tr><td>Keputusan Tertinggi Orgnaisai </td>
 		<td>:</td>
